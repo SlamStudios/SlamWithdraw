@@ -1,0 +1,10 @@
+general:
+  vault_not_found: "&cVault dependency not found! Disabling plugin."
+withdraw:
+  success: "&aSuccessfully withdrew %amount% into a voucher!"
+  out_of_bounds: "&cAmount must be between %min% and %max%."
+  not_enough_money: "&cYou do not have enough money to withdraw."
+adminwithdraw:
+  success: "&aCreated a voucher with %amount% signed by %signer%."
+redeem:
+  success: "&aSuccessfully redeemed voucher for %amount%."

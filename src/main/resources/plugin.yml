@@ -1,0 +1,22 @@
+name: CurrencyVouchers
+main: org.slamstudios.currencyvouchers.CurrencyVouchers
+version: ${project.version}
+api-version: 1.21
+author: SlamTheHam
+depend: [Vault]
+commands:
+  withdraw:
+    description: Withdraw money from your balance into a physical item.
+    permission: voucher.use
+    usage: /withdraw <amount>
+  adminwithdraw:
+    description: Withdraw money from your balance into a physical item and set the signer to anything.
+    permission: voucher.adminwithdraw
+    usage: /adminwithdraw <amount> <signer>
+permissions:
+  voucher.use:
+    description: Allows the player to use /withdraw command
+    default: true
+  voucher.adminwithdraw:
+    description: Allows the player to use the /adminwithdraw command
+    default: op

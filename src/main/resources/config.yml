@@ -1,0 +1,9 @@
+minimum-amount: 1
+maximum-amount: 10000
+
+voucher-item:
+  material: "PAPER"
+  name: "&a&lBanknote &7(Right-Click)"
+  lore:
+    - "&7Amount: &a%amount%"
+    - "&7Signer: &e%signer%"

@@ -1,4 +1,4 @@
-package org.slamstudios.currencyvouchers.commands;
+package org.slamstudios.slamwithdraw.commands;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
@@ -7,9 +7,9 @@ import co.aikar.commands.annotation.Description;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.slamstudios.currencyvouchers.CurrencyVouchers;
-import org.slamstudios.currencyvouchers.MessageManager;
-import org.slamstudios.currencyvouchers.VoucherManager;
+import org.slamstudios.slamwithdraw.SlamWithdraw;
+import org.slamstudios.slamwithdraw.MessageManager;
+import org.slamstudios.slamwithdraw.VoucherManager;
 //Developed By SlamStudios
 @CommandAlias("withdraw")
 @Description("Withdraw money into a voucher")
@@ -25,8 +25,8 @@ public class WithdrawCommand extends BaseCommand {
 
     @Default
     public void onWithdraw(Player player, double amount) {
-        double minAmount = CurrencyVouchers.getInstance().getConfig().getDouble("minimum-amount", 1);
-        double maxAmount = CurrencyVouchers.getInstance().getConfig().getDouble("maximum-amount", 10000);
+        double minAmount = SlamWithdraw.getInstance().getConfig().getDouble("minimum-amount", 1);
+        double maxAmount = SlamWithdraw.getInstance().getConfig().getDouble("maximum-amount", 10000);
 
         if (amount < minAmount || amount > maxAmount) {
             player.sendMessage(messageManager.getMessage("withdraw.out_of_bounds")
@@ -35,7 +35,7 @@ public class WithdrawCommand extends BaseCommand {
             return;
         }
 
-        Economy economy = CurrencyVouchers.getInstance().getEconomy();
+        Economy economy = SlamWithdraw.getInstance().getEconomy();
         if (economy.getBalance(player) < amount) {
             player.sendMessage(messageManager.getMessage("withdraw.not_enough_money"));
             return;

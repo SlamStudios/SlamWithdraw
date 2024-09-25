@@ -1,12 +1,12 @@
-package org.slamstudios.currencyvouchers.commands;
+package org.slamstudios.slamwithdraw.commands;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.slamstudios.currencyvouchers.MessageManager;
-import org.slamstudios.currencyvouchers.VoucherManager;
+import org.slamstudios.slamwithdraw.MessageManager;
+import org.slamstudios.slamwithdraw.VoucherManager;
 //Developed By SlamStudios
 @CommandAlias("adminwithdraw")
 @Description("Create a voucher with a specified signer")

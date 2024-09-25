@@ -8,3 +8,4 @@ adminwithdraw:
   success: "&aCreated a voucher with %amount% signed by %signer%."
 redeem:
   success: "&aSuccessfully redeemed voucher for %amount%."
+  duplicate_error: "&cDuplicate item detected, administrators have been notified."

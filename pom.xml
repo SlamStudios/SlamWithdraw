@@ -13,7 +13,11 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+<<<<<<< HEAD
     <groupId>org.slamstudios.slamwithdraw</groupId>
+=======
+    <groupId>org.slamstudios</groupId>
+>>>>>>> 65da1d6a90cdecf619831c1c79909ea182a9ee42
     <artifactId>SlamWithdraw</artifactId>
     <version>${buildPhase}-${buildDate}-v${buildVersion}</version>
 

@@ -1,5 +1,6 @@
 package org.slamstudios.slamwithdraw;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -68,7 +69,7 @@ public class VoucherManager implements Listener {
         item.setAmount(1);  // Ensure the item is unstackable
 
         // Log the creation of the voucher
-        logMovement("Created voucher with UUID: " + voucherUUID + ", Amount: " + amount + ", Signer: " + signer);
+        logMovement("Created voucher with UUID: " + voucherUUID + ", Amount: " + amount + ", Signer: " + signer, null);
 
         return item;
     }
@@ -111,6 +112,13 @@ public class VoucherManager implements Listener {
         }
     }
 
+    @EventHandler
+    public void onInventoryPlace(InventoryClickEvent event) {
+        if (event.getCursor() != null) {
+            handleVoucherInteraction(event.getCursor(), (Player) event.getWhoClicked(), false);
+        }
+    }
+
     private void handleVoucherInteraction(ItemStack item, Player player, boolean isRedemption) {
         if (item == null || !item.hasItemMeta()) return;
         ItemMeta meta = item.getItemMeta();
@@ -124,14 +132,14 @@ public class VoucherManager implements Listener {
             try {
                 voucherUUID = UUID.fromString(uuidString);
             } catch (IllegalArgumentException e) {
-                logMovement("Failed to parse UUID for item: " + item.toString());
+                logMovement("Failed to parse UUID for item: " + item.toString(), player);
                 return;
             }
 
             if (isRedemption) {
                 // Check for duplication during redemption
                 if (usedUUIDs.contains(voucherUUID)) {
-                    logMovement("Duplicate banknote detected during redemption with UUID: " + voucherUUID);
+                    logMovement("Duplicate note detected during redemption with UUID: " + voucherUUID, player);
                     if (player != null) {
                         player.sendMessage(plugin.getMessageManager().getMessage("redeem.duplicate_error"));
                     }
@@ -144,19 +152,25 @@ public class VoucherManager implements Listener {
                 double amount = meta.getPersistentDataContainer().get(plugin.getAmountKey(), PersistentDataType.DOUBLE);
                 plugin.getEconomy().depositPlayer(player, amount);
                 player.getInventory().remove(item);
-                logMovement("Redeemed voucher with UUID: " + voucherUUID + ", Amount: " + amount + ", Player: " + player.getName());
+                logMovement("Redeemed voucher with UUID: " + voucherUUID + ", Amount: " + amount + ", Player: " + player.getName(), player);
                 player.sendMessage(plugin.getMessageManager().getMessage("redeem.success").replace("%amount%", String.valueOf(amount)));
                 item.setAmount(0);  // Ensure item is removed from inventory
             } else {
                 // Just log non-redemption interactions
-                logMovement("Item interacted with UUID: " + voucherUUID);
+                logMovement("Item interacted with UUID: " + voucherUUID, player);
             }
         }
     }
 
-    private void logMovement(String message) {
+    private void logMovement(String message, Player player) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFile, true))) {
-            writer.write(message);
+            String logEntry = message;
+            if (player != null) {
+                Location location = player.getLocation();
+                logEntry += String.format(" at [World: %s, X: %.2f, Y: %.2f, Z: %.2f]",
+                        location.getWorld().getName(), location.getX(), location.getY(), location.getZ());
+            }
+            writer.write(logEntry);
             writer.newLine();
         } catch (IOException e) {
             plugin.getLogger().severe("Failed to log banknote movement: " + e.getMessage());

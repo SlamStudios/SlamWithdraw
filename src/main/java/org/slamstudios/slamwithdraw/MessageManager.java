@@ -1,4 +1,4 @@
-package org.slamstudios.currencyvouchers;
+package org.slamstudios.slamwithdraw;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -7,10 +7,10 @@ import java.io.File;
 //Developed By SlamStudios
 public class MessageManager {
 
-    private final CurrencyVouchers plugin;
+    private final SlamWithdraw plugin;
     private FileConfiguration messagesConfig;
 
-    public MessageManager(CurrencyVouchers plugin) {
+    public MessageManager(SlamWithdraw plugin) {
         this.plugin = plugin;
         loadMessages();
     }

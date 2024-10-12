@@ -1,5 +1,5 @@
-name: CurrencyVouchers
-main: org.slamstudios.currencyvouchers.CurrencyVouchers
+name: SlamWithdraw
+main: org.slamstudios.slamwithdraw.SlamWithdraw
 version: ${project.version}
 api-version: 1.21
 author: SlamTheHam

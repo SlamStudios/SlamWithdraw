@@ -1,24 +1,23 @@
-package org.slamstudios.currencyvouchers;
+package org.slamstudios.slamwithdraw;
 
 import co.aikar.commands.BukkitCommandManager;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.NamespacedKey;
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.slamstudios.currencyvouchers.commands.AdminWithdrawCommand;
-import org.slamstudios.currencyvouchers.commands.WithdrawCommand;
+import org.slamstudios.slamwithdraw.commands.AdminWithdrawCommand;
+import org.slamstudios.slamwithdraw.commands.WithdrawCommand;
 //Developed By SlamStudios
-public class CurrencyVouchers extends JavaPlugin {
+public class SlamWithdraw extends JavaPlugin {
 
-    private static CurrencyVouchers instance;
+    private static SlamWithdraw instance;
     private VoucherManager voucherManager;
     private MessageManager messageManager;
     private Economy economy;
     private NamespacedKey amountKey;
     private NamespacedKey signerKey;
 
-    public static CurrencyVouchers getInstance() {
+    public static SlamWithdraw getInstance() {
         return instance;
     }
 

@@ -1,4 +1,4 @@
-package org.slamstudios.currencyvouchers;
+package org.slamstudios.slamwithdraw;
 
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -23,11 +23,11 @@ import java.util.*;
 //Developed By SlamStudios
 public class VoucherManager implements Listener {
 
-    private final CurrencyVouchers plugin;
+    private final SlamWithdraw plugin;
     private final Set<UUID> usedUUIDs = new HashSet<>();
     private final File logFile;
 
-    public VoucherManager(CurrencyVouchers plugin) {
+    public VoucherManager(SlamWithdraw plugin) {
         this.plugin = plugin;
         logFile = new File(plugin.getDataFolder(), "banknote_log.txt");
         createLogFile();

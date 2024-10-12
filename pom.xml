@@ -13,8 +13,8 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
-    <groupId>org.slamstudios.currencyvouchers</groupId>
-    <artifactId>CurrencyVouchers</artifactId>
+    <groupId>org.slamstudios.slamwithdraw</groupId>
+    <artifactId>SlamWithdraw</artifactId>
     <version>${buildPhase}-${buildDate}-v${buildVersion}</version>
 
     <build>
